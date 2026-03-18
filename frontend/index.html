@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thuật toán tìm đường - Graph Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Left Sidebar -->
+  <div class="sidebar">
+    <!-- Navigation Section -->
+    <div class="nav-section">
+      <button class="nav-btn active" disabled>Algorithms</button>
+      <button id="hanoiMapBtn" class="nav-btn">Hà Nội Map</button>
+    </div>
+
+    <!-- Header -->
+    <div class="sidebar-header">
+      <h2>Graph Visualizer</h2>
+      <p class="subtitle">Vẽ đồ thị và xem thuật toán tìm đường hoạt động</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="toolbar-row">
+      <button id="runBtn" class="primary">▶️ Chạy</button>
+      <button id="resetVizBtn">🔄 Reset</button>
+    </div>
+
+    <div class="toolbar-row">
+      <button id="clearBtn" class="danger">🗑️ Xóa hết</button>
+    </div>
+
+    <!-- Algorithm Selection -->
+    <div class="control-group">
+      <label class="label">
+        <span class="label-text">Thuật toán:</span>
+        <select id="algoSelect">
+          <option value="dijkstra" selected>Dijkstra</option>
+          <option value="bellman_ford">Bellman-Ford</option>
+          <option value="astar">A* (nhanh nhất)</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Speed Control -->
+    <div class="control-group">
+      <label class="label">
+        <span class="label-text">Tốc độ: <span id="speedVal">50ms</span></span>
+        <input type="range" id="speed" min="10" max="2000" value="50" step="10" />
+      </label>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <strong>📖 Hướng dẫn sử dụng</strong>
+      <ul>
+        <li><strong>Double Click</strong>: Tạo node mới</li>
+        <li><strong>Drag</strong>: Di chuyển node</li>
+        <li><strong>Shift+Drag</strong>: Nối 2 nodes (tạo edge)</li>
+        <li><strong>Right Click</strong>: Menu context (Start/End)</li>
+        <li><strong>Delete</strong>: Xóa node/edge được chọn</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Canvas Container -->
+  <div class="canvas-container">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- Right Panel - Visualization -->
+  <div class="right-panel">
+    <!-- Distance Table -->
+    <div class="viz-section">
+      <h3>📊 Distance Table</h3>
+      <table id="distanceTable">
+        <thead>
+          <tr><th>Node</th><th>Distance</th><th>Prev</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="3" style="text-align:center;color:#64748b;">Chưa có dữ liệu</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Priority Queue -->
+    <div class="viz-section">
+      <h3>🔢 Priority Queue</h3>
+      <div id="pqContainer">
+        <em style="color:#64748b;">Chưa có dữ liệu</em>
+      </div>
+    </div>
+
+    <!-- Explanation -->
+    <div class="viz-section">
+      <h3>💬 Step Explanation</h3>
+      <div id="explanationText">
+        <div class="explanation-box">
+          <p>Nhấn <strong>▶️ Chạy</strong> để bắt đầu visualization</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pseudocode -->
+    <div class="viz-section">
+      <h3>📝 Pseudocode</h3>
+      <pre id="pseudocodeDisplay"></pre>
+    </div>
+
+    <!-- Playback Controls -->
+    <div class="playback-controls">
+      <div class="playback-buttons">
+        <button id="firstBtn" title="First step">⏮️</button>
+        <button id="prevBtn" title="Previous step">⏪</button>
+        <button id="playPauseBtn" title="Play/Pause">▶️</button>
+        <button id="nextBtn" title="Next step">⏩</button>
+        <button id="lastBtn" title="Last step">⏭️</button>
+      </div>
+      <input type="range" id="stepSlider" min="0" max="0" value="0" />
+      <span id="stepCounter">Step 0 / 0</span>
+    </div>
+  </div>
+
+  <!-- Context Menu -->
+  <div id="contextMenu" class="context-menu hidden">
+    <button id="setStartBtn">🚩 Đặt Start</button>
+    <button id="setEndBtn">🎯 Đặt End</button>
+  </div>
+
+  <!-- Status Bar -->
+  <div id="statusBar" class="status-bar">Sẵn sàng. Double-click để tạo nodes, Shift+drag để nối nodes.</div>
+
+  <!-- Main App Script -->
+  <script src="app_canvas.js" defer></script>
+
+  <!-- Navigation Script -->
+  <script>
+    document.getElementById("hanoiMapBtn").addEventListener("click", () => {
+      window.location.href = "hanoi_map.html";
+    });
+  </script>
+
+</body>
+
+</html>

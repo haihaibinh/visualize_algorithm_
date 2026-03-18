@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tìm đường ngắn nhất - Quận Hai Bà Trưng</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+</head>
+
+<body>
+  <!-- Map container -->
+  <div id="map"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Navigation Section -->
+    <div class="nav-section">
+      <button id="algorithmsBtn" class="nav-btn">Algorithms</button>
+      <button class="nav-btn active" disabled>Hà Nội Map</button>
+    </div>
+
+    <!-- Header -->
+    <div class="sidebar-header">
+      <h2>Hanoi Map Router</h2>
+      <p class="subtitle">Tìm đường ngắn nhất trên bản đồ thực Hà Nội</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="toolbar-row">
+      <button id="runBtn" class="primary">▶️ Tìm đường</button>
+      <button id="resetVizBtn">🔄 Reset</button>
+    </div>
+
+    <!-- Algorithm Selection -->
+    <div class="control-group">
+      <label class="label">
+        <span class="label-text">Thuật toán:</span>
+        <select id="algoSelect">
+          <option value="dijkstra">Dijkstra</option>
+          <option value="bellman_ford">Bellman-Ford</option>
+          <option value="astar" selected>A*</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Toggle Buttons -->
+    <div class="toolbar-row">
+      <button id="toggleNodesBtn" class="toggle-btn active">Hide Nodes</button>
+      <button id="toggleWaysBtn" class="toggle-btn">Show Ways</button>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <strong>📖 Hướng dẫn</strong>
+      <ul>
+        <li><strong>Click 1:</strong> Đặt điểm <strong>bắt đầu</strong> (xanh)</li>
+        <li><strong>Click 2:</strong> Đặt điểm <strong>kết thúc</strong> (đỏ)</li>
+        <li><strong>Double-click:</strong> Xóa lựa chọn</li>
+        <li><strong>Run:</strong> Tìm đường ngắn nhất</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Context menu -->
+  <div id="contextMenu" class="context-menu hidden">
+    <button id="setStartBtn">🚩 Đặt Start</button>
+    <button id="setEndBtn">🎯 Đặt End</button>
+  </div>
+
+  <!-- Status bar -->
+  <div id="statusBar" class="status-bar">Đang tải bản đồ quận Hai Bà Trưng...</div>
+
+  <!-- Result modal -->
+  <div id="resultModal" class="result-modal hidden">
+    <button class="close-btn">&times;</button>
+    <h3>🎉 Kết quả tìm đường</h3>
+    <div class="modal-content">
+      <p id="modalPath"></p>
+      <p id="modalDistance"></p>
+      <p id="modalSteps"></p>
+      <p id="modalTime"></p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    defer></script>
+
+  <script src="app_mapmode.js" defer></script>
+  
+  <script>
+    document.getElementById("algorithmsBtn").addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+
+</html>
