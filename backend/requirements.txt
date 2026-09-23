@@ -1,0 +1,8 @@
+Flask
+flask-cors
+osmnx
+pandas
+gunicorn
+scikit-learn
+numpy
+shapely
