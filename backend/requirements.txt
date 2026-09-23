@@ -1,5 +1,0 @@
-Flask
-flask-cors
-osmnx
-pandas
-gunicorn
